@@ -1,6 +1,8 @@
 jsPrimer = require "connect-assets-jsprimer"
 
 exportPathsHelper = (assetsModule, log) ->
+  throw new Error "Could not load assets module properties" if not assetsModule?.instance?.options?.helperContext?.js?.root?
+  
   assets = assetsModule.instance
   
   context = assets.options.helperContext
