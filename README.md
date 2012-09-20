@@ -16,16 +16,16 @@ An NPM module for outputting your [connect-assets](https://github.com/TrevorBurn
 
 ### Usage
 
-assets = require "connect-assets"
-jsPaths = require "connect-assets-jspaths"
-
-# Snip ...
-
-app.use assets()
-jsPaths assets
-
-# Optionally, pass a log function to see progress
-# jsPaths assets, console.log
+    assets = require "connect-assets"
+    jsPaths = require "connect-assets-jspaths"
+    
+    # Snip ...
+    
+    app.use assets()
+    jsPaths assets
+    
+    # Optionally, pass a log function to see progress
+    # jsPaths assets, console.log
 
 ### Copyright
 
