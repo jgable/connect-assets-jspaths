@@ -1,0 +1,24 @@
+{
+  "name": "connect-assets-jspaths",
+  "version": "0.0.1",
+  "homepage": "https://jgable.github.com/connect-assets-jspaths",
+  "description": "Helps with getting the paths to your connect-assets javascript files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jgable/connect-assets-jspaths.git"
+  },
+  "keywords": [
+    "connect-assets",
+    "javascript",
+    "requirejs"
+  ],
+  "author": "Jacob Gable <jacob.gable@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "coffee-script": "~1.3.3"
+  }
+}
