@@ -1,4 +1,4 @@
-
+jsPrimer = require "connect-assets-jsprimer"
 
 exportPathsHelper = (assetsModule, log) ->
   assets = assetsModule.instance
@@ -16,7 +16,6 @@ exportPathsHelper = (assetsModule, log) ->
 
     file
 
-  #console.log assets.cachedRoutePaths
   exportPaths = {}
   for own route, paths of assets.cachedRoutePaths
     trimmedRoute = route
@@ -43,4 +42,5 @@ exportPathsHelper = (assetsModule, log) ->
   context.jsUrl = jsUrl
 
 module.exports = (assets, log) ->
+    jsPrimer assets, log
     exportPathsHelper assets, log
