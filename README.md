@@ -43,10 +43,10 @@ This module exports two global functions `exportPaths()` and `jsUrl()`.
     
     // Using this in your view
     - var mainJsPath = jsUrl("/js/main.js")
-    script(type="text/javascript", src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.0.2/require.min.js", data-main="#{mainJsPath}")    
+    script(type="text/javascript", data-main="#{mainJsPath}", src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.0.2/require.min.js")    
     
     // Turns into this when rendered in production
-    <script type="text/javascript" data-main="/builtAssets/js/main.13819282742.js" src=src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.0.2/require.min.js"></script>
+    <script type="text/javascript" data-main="/builtAssets/js/main.13819282742.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.0.2/require.min.js"></script>
 
 ### Dynamic RequireJS Paths
 
