@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Connect-assets-jspaths by jgable</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/jgable/connect-assets-jspaths">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/jgable/connect-assets-jspaths/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/jgable/connect-assets-jspaths/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Connect-assets-jspaths</h1>
+          <p>An NPM module for outputting your connect-assets javascript assets.  Useful for working with requireJS.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/jgable">jgable</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="http://twitter.com/#!/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>connect-assets-jspaths</h1>
+
+<p>An NPM module for outputting your <a href="https://github.com/TrevorBurnham/connect-assets">connect-assets</a> javascript assets.  Useful for working with requireJS.</p>
+
+<h3>Problems This Helps With</h3>
+
+<ul>
+<li>You're using <a href="http://requirejs.org">requireJS</a> and need to update the location of your modules after they have become minified and hashed.</li>
+<li>You're using <a href="http://requirejs.org">requireJS</a> and need to get the url of a particular file to add as the <code>data-main</code> attribute of your script reference.</li>
+</ul><h3>Installation</h3>
+
+<p><code>npm install connect-assets-jspaths</code></p>
+
+<ul>
+<li>Note, there is a dependency on CoffeeScript.</li>
+</ul><h3>Server Side Usage</h3>
+
+<pre><code>assets = require "connect-assets"
+jsPaths = require "connect-assets-jspaths"
+
+# Snip ...
+
+app.use assets()
+# Exports the global function exportPaths() and jsUrl(); see below in View Helpers.
+jsPaths assets
+
+# Optionally, pass a log function to see progress
+# jsPaths assets, console.log
+</code></pre>
+
+<h3>View Usage</h3>
+
+<p>This module exports two global functions <code>exportPaths()</code> and <code>jsUrl()</code>.</p>
+
+<pre><code>// Using this in your view
+!= exportPaths("jsPaths")
+
+// Turns into this when rendered in production
+&lt;script type="text/javascript"&gt;
+    var jsPaths = { "main", "/builtAssets/js/main.13819282742.js" /* snip all the other file paths */ };
+&lt;/script&gt;
+
+
+// Using this in your view
+- var mainJsPath = jsUrl("/js/main.js")
+script(type="text/javascript", data-main="#{mainJsPath}", src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.0.2/require.min.js")    
+
+// Turns into this when rendered in production
+&lt;script type="text/javascript" data-main="/builtAssets/js/main.13819282742.js" src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.0.2/require.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h3>Dynamic RequireJS Paths</h3>
+
+<p>Now that we have a variable with our requireJS friendly paths in it, we can set those paths in the RequireJS config</p>
+
+<pre><code># Example main.coffee file in /assets/js folder
+
+requirePaths =
+  paths:
+    jquery: "//cdnjs.cloudflare.com/ajax/libs/jquery/1.7.2/jquery.min"
+    underscore: "//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min"
+    backbone: "//cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.2/backbone-min"
+    text: "/js/lib/text"
+    handlebars: "/js/lib/handlebars"
+
+if jsPaths
+  for own key, value of jsPaths
+    # Fix up the lib references
+    key = key.slice 4 if key.slice(0, 4) == "lib/"
+    requirePaths.paths[key] = value 
+
+require.config
+  paths: requirePaths.paths
+
+  shim:
+    jquery:
+      exports: "$"
+    underscore:
+      exports: "_"
+    backbone:
+      deps: ["underscore", "jquery"]
+      exports: "Backbone"
+
+require ['app'], (App) -&gt;
+    new App().initialize()
+</code></pre>
+
+<h3>Copyright</h3>
+
+<p>Created by <a href="http://jacobgable.com">Jacob Gable</a>.  MIT License; no attribution required.</p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
