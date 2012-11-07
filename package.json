@@ -20,6 +20,6 @@
   "license": "MIT",
   "dependencies": {
     "coffee-script": "~1.3.3",
-    "connect-assets-jsprimer": "0.0.1"
+    "connect-assets-jsprimer": "0.0.x"
   }
 }
