@@ -1,6 +1,6 @@
 {
   "name": "connect-assets-jspaths",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://jgable.github.com/connect-assets-jspaths",
   "description": "Helps with getting the paths to your connect-assets javascript files.",
   "main": "index.js",
