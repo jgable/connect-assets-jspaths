@@ -46,8 +46,9 @@ exportPathsHelper = (assetsModule, log) ->
 module.exports = (assets, log, changedCallback, doneWatching) ->
     # Assuming that if they passed a changedCallback and done they want to watch.
     if changedCallback and doneWatching
-      return jsPrimer.loadAndWatchFiles assets, log, changedCallback, doneWatching
-
-    # Otherwise, just load the files.
-    jsPrimer.loadFiles assets, log
+      jsPrimer.loadAndWatchFiles assets, log, changedCallback, doneWatching
+    else
+      # Otherwise, just load the files.
+      jsPrimer.loadFiles assets, log
+    
     exportPathsHelper assets, log
