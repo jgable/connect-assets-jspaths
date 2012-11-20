@@ -43,6 +43,11 @@ exportPathsHelper = (assetsModule, log) ->
   context.exportPaths = getPathsScript
   context.jsUrl = jsUrl
 
-module.exports = (assets, log) ->
-    jsPrimer assets, log
+module.exports = (assets, log, changedCallback, doneWatching) ->
+    # Assuming that if they passed a changedCallback and done they want to watch.
+    if changedCallback and doneWatching
+      return jsPrimer.loadAndWatchFiles assets, log, changedCallback, doneWatching
+
+    # Otherwise, just load the files.
+    jsPrimer.loadFiles assets, log
     exportPathsHelper assets, log
