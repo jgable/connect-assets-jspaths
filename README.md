@@ -28,6 +28,18 @@ An NPM module for outputting your [connect-assets](https://github.com/TrevorBurn
     # Optionally, pass a log function to see progress
     # jsPaths assets, console.log
 
+### Watch changes and re-compile
+
+Now you can pass some additional callbacks in and it will monitor your connect assets directories for changes.
+
+    fileChangedCallback = (err, filePath) ->
+        console.log "File Changed: #{filePath}"
+
+    jsPaths assets, console.log, fileChangedCallback, (err, watcher) ->
+        console.log "Watcher initialized"
+
+**NOTE** You'll probably want to disable this for production mode.
+
 ### View Usage
 
 This module exports two global functions `exportPaths()` and `jsUrl()`.
