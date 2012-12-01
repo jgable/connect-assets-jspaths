@@ -19,6 +19,7 @@ exportPathsHelper = (assetsModule, log) ->
     file
 
   exportPaths = {}
+  servePath = assets.options.servePath ?= ''
   for own route, paths of assets.cachedRoutePaths
     trimmedRoute = route
     trimmedRoute = route.slice prePathLength if route.slice(0, prePathLength) == prePath
@@ -26,7 +27,7 @@ exportPathsHelper = (assetsModule, log) ->
     # Trim the end of the file if it has a .js extension
     trimmedRoute = trimJsExt trimmedRoute
 
-    exportPaths[trimmedRoute] = trimJsExt paths[0]
+    exportPaths[trimmedRoute] = servePath + (trimJsExt paths[0])
 
   getPathsScript = (varName = "connectAssets") ->
     """
