@@ -39,7 +39,7 @@ exportPathsHelper = (assetsModule, log) ->
   jsUrl = (fileName) ->
     # Strip the leading /
     fileName = fileName.slice(1) if fileName[0] is "/"
-    assets.cachedRoutePaths[fileName]?[0]
+    servePath + assets.cachedRoutePaths[fileName]?[0]
 
   context.exportPaths = getPathsScript
   context.jsUrl = jsUrl
