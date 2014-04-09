@@ -17,9 +17,12 @@
     "requirejs"
   ],
   "author": "Jacob Gable <jacob.gable@gmail.com>",
+  "contributors": [
+    "Jonathan Chapman <chafnan@gmail.com> (https://github.com/chafnan)"
+  ],
   "license": "MIT",
   "dependencies": {
-    "coffee-script": "~1.3.3",
+    "coffee-script": "^1.3.3",
     "connect-assets-jsprimer": "0.1.x"
   }
 }
